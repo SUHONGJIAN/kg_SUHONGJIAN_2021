@@ -27,6 +27,12 @@ class InputError(Exception):
     '''
     def __init__(self, inputsSize):
         self.inputsSize = inputsSize
+
+
+class terminalColors(object):
+    PASS = "\033[1;32;40m"
+    FAIL = "\033[1;31;40m"
+    ERROR = "\033[1;33;41m"
         
         
 class MainProcess(object):
@@ -40,8 +46,8 @@ class MainProcess(object):
                 raise InputError(len(sys.argv) - 1)
             s1, s2 = sys.argv[1], sys.argv[2]
             result = Solution().check1v1Mapping(s1, s2)
-            print(result)
+            print((terminalColors.FAIL, terminalColors.PASS)[result] + str(result))
         except InputError as error:
-            print("Oops! That was invalid command line arguments[inputs size: " + str(error.inputsSize) + " -> shout be 2]. Try it again.")
+            print(terminalColors.ERROR + "Oops! That was invalid command line arguments[inputs size: " + str(error.inputsSize) + " -> should be 2]. Try it again.")
 
 MainProcess().main()
