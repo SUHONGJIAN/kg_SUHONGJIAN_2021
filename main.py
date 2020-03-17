@@ -1,4 +1,7 @@
-# Python solution to check whether one-to-one character mapping exists from one string to another string.
+# name: Hongjian Su
+# date: 03/17/2020
+# description: Python solution to check whether one-to-one character mapping exists from one string to another string.
+
 import sys
 from collections import defaultdict
 
