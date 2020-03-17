@@ -19,6 +19,14 @@ class Solution(object):
             else:
                 mappingDict[char1] = char2
         return True
+
+
+class InputError(Exception):
+    '''
+    Custom Exception: raise when the number of command line arguments is not what expected
+    '''
+    def __init__(self, inputsSize):
+        self.inputsSize = inputsSize
         
         
 class MainProcess(object):
@@ -27,8 +35,13 @@ class MainProcess(object):
         >>> python main.py 123 321
         True
         '''
-        s1, s2 = sys.argv[1], sys.argv[2]
-        result = Solution().check1v1Mapping(s1, s2)
-        print(result)
+        try:
+            if len(sys.argv) != 3:
+                raise InputError(len(sys.argv) - 1)
+            s1, s2 = sys.argv[1], sys.argv[2]
+            result = Solution().check1v1Mapping(s1, s2)
+            print(result)
+        except InputError as error:
+            print("Oops! That was invalid command line arguments[inputs size: " + str(error.inputsSize) + " -> shout be 2]. Try it again.")
 
 MainProcess().main()
